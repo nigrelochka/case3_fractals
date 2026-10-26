@@ -16,8 +16,15 @@ def show_menu() -> None:
     print("8. Кривая Леви\n9. Дракон Хартера-Хейтуэя\n10. Выход")
 
 def setup_turtle():
-    """Настройки черепашки, часть В"""
-    pass
+    """Настраивает окно и черепашку перед рисованием."""
+    turtle.reset()
+    turtle.title('Фрактальная мастерская')
+    turtle.setup(1000, 750)
+    turtle.speed(0)
+    turtle.hideturtle()
+    turtle.penup()
+    turtle.goto(0, -150)
+    turtle.pendown()
 
 
 # Ввод и проверка параметров.
@@ -73,53 +80,109 @@ def get_angle() -> float:
 
 
 def main() -> None:
-    """TODO: добавить цикл меню, проверку параметров и вызовы функций."""
+    """Запускает меню и рисует выбранный фрактал."""
     while True:
         show_menu()
-        users_choice = input("Выберите пункт меню: ").strip()
+        users_choice = input('Выберите пункт меню: ').strip()
 
-        if users_choice == "10":
-            print("Завершение программы.")
+        if users_choice == '10':
+            print('Завершение программы.')
             break
-        elif users_choice == "1":
-            depth = get_depth(min_depth=1)
+
+        elif users_choice == '1':
+            depth = get_depth(min_depth=1, max_depth=9)
             size = get_size()
             angle = get_angle()
-            # Часть В: настройка и рисование дерева
-        elif users_choice == "2":
-            depth = get_depth()
-            size = get_size()
-            # Часть В: рисование ветки
-        elif users_choice == "3":
-            depth = get_depth()
-            size = get_size()
-            # Часть В: рисование кривой Коха
-        elif users_choice == "4":
-            depth = get_depth()
-            size = get_size()
-            # Часть В: рисование снежинки Коха
-        elif users_choice == "5":
-            depth = get_depth()
-            size = get_size()
-            # Часть В: рисование кривой Минковского
-        elif users_choice == "6":
-            depth = get_depth()
-            size = get_size()
-            # Часть В: рисование ледяного фрактала №1
-        elif users_choice == "7":
-            depth = get_depth()
-            size = get_size()
-            # Часть В: рисование ледяного фрактала №2
-        elif users_choice == "8":
-            depth = get_depth()
-            size = get_size()
-            # Часть В: рисование кривой Леви
-        elif users_choice == "9":
-            depth = get_depth()
-            size = get_size()
-            # Часть В: рисование дракона
 
-        input("Нажмите Enter для возврата в меню...")
+            setup_turtle()
+            turtle.left(90)
+            draw_binary_tree(depth, size, angle)
+
+        elif users_choice == '2':
+            depth = get_depth(max_depth=9)
+            size = get_size()
+
+            setup_turtle()
+            turtle.left(90)
+            draw_branch(depth, size)
+
+        elif users_choice == '3':
+            depth = get_depth(max_depth=6)
+            size = get_size()
+
+            setup_turtle()
+            turtle.penup()
+            turtle.goto(-300, 0)
+            turtle.pendown()
+            koch(depth, size)
+
+        elif users_choice == '4':
+            depth = get_depth(max_depth=6)
+            size = get_size()
+
+            setup_turtle()
+            turtle.penup()
+            turtle.goto(-size / 2, 150)
+            turtle.pendown()
+            koch_snowflake(depth, size)
+
+        elif users_choice == '5':
+            depth = get_depth(max_depth=4)
+            size = get_size()
+
+            setup_turtle()
+            turtle.penup()
+            turtle.goto(-300, 0)
+            turtle.pendown()
+            minkowski(depth, size)
+
+        elif users_choice == '6':
+            depth = get_depth(max_depth=6)
+            size = get_size()
+
+            setup_turtle()
+            turtle.penup()
+            turtle.goto(-300, 0)
+            turtle.pendown()
+            ice_fractal_1(depth, size)
+
+        elif users_choice == '7':
+            depth = get_depth(max_depth=4)
+            size = get_size()
+
+            setup_turtle()
+            turtle.penup()
+            turtle.goto(-300, 0)
+            turtle.pendown()
+            ice_fractal_2(depth, size)
+
+        elif users_choice == '8':
+            depth = get_depth(max_depth=12)
+            size = get_size()
+
+            setup_turtle()
+            turtle.penup()
+            turtle.goto(-size / 2, 0)
+            turtle.pendown()
+            levy(depth, size)
+
+        elif users_choice == '9':
+            depth = get_depth(max_depth=12)
+            size = get_size()
+
+            setup_turtle()
+            turtle.penup()
+            turtle.goto(-size / 2, 0)
+            turtle.pendown()
+            dragon(depth, size)
+
+        else:
+            print('Такого пункта нет.')
+            continue
+
+        input('Нажмите Enter для возврата в меню...')
+
+    turtle.bye()
 
 if __name__ == "__main__":
     main()
