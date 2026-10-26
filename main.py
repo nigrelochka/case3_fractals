@@ -22,6 +22,7 @@ def setup_turtle():
     turtle.setup(1000, 750)
     turtle.speed(0)
     turtle.hideturtle()
+    turtle.tracer(1,0)
     turtle.penup()
     turtle.goto(0, -150)
     turtle.pendown()
@@ -180,6 +181,7 @@ def main() -> None:
             print('Такого пункта нет.')
             continue
 
+        turtle.update()
         input('Нажмите Enter для возврата в меню...')
 
     turtle.bye()
