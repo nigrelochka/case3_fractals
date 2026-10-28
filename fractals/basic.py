@@ -21,18 +21,21 @@ def draw_binary_tree(depth: int, size: float, angle: float) -> None:
 
 
 def draw_branch(n: int, size: float) -> None:
-    """Рисует фрактал «Ветка» с помощью рекурсии."""
     if n == 0:
         turtle.forward(size)
         turtle.backward(size)
-    else:
-        turtle.forward(size)
+        return
 
-        turtle.left(30)
-        draw_branch(n - 1, size / 2)
+    turtle.forward(size)
 
-        turtle.right(60)
-        draw_branch(n - 1, size / 2)
+    turtle.left(45)
+    draw_branch(n - 1, size / 2)
+    turtle.right(45)
 
-        turtle.left(30)
-        turtle.backward(size)
+    turtle.right(45)
+    draw_branch(n - 1, size / 2)
+    turtle.left(45)
+
+    draw_branch(n - 1, size)
+
+    turtle.backward(size)

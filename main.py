@@ -33,9 +33,8 @@ def setup_turtle():
     turtle.reset()
     turtle.title('Фрактальная мастерская')
     turtle.setup(1000, 750)
-    turtle.speed(0)
+    turtle.speed(100)
     turtle.hideturtle()
-    turtle.tracer(1,0)
     turtle.penup()
     turtle.goto(0, -150)
     turtle.pendown()
@@ -198,7 +197,7 @@ def main() -> None:
         turtle.update()
         responsive_input('Нажмите Enter для возврата в меню...')
 
-    turtle.bye()
+    turtle.done()
 
 if __name__ == "__main__":
     main()
