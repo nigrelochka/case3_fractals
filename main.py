@@ -1,11 +1,24 @@
 """Роль 4: меню и интеграция."""
 
 import math
+import time
 import turtle
+from concurrent.futures import ThreadPoolExecutor
 
 from fractals.basic import draw_binary_tree, draw_branch
 from fractals.koch import koch, koch_snowflake, minkowski
 from fractals.complex import ice_fractal_1, ice_fractal_2, levy, dragon
+
+
+
+# Читаем ответы из консоли, не останавливая графическое окно.
+def responsive_input(prompt: str) -> str:
+    with ThreadPoolExecutor(max_workers=1) as executor:
+        answer = executor.submit(input, prompt)
+        while not answer.done():
+            turtle.update()
+            time.sleep(0.03)
+        return answer.result()
 
 
 def show_menu() -> None:
@@ -34,7 +47,7 @@ def get_depth(min_depth: int = 0,
     """Запрашивает допустимую глубину рекурсии."""
     while True:
         try:
-            depth = int(input("Глубина рекурсии: "))
+            depth = int(responsive_input("Глубина рекурсии: "))
 
             if depth < min_depth:
                 print(f"Глубина должна быть не меньше {min_depth}.")
@@ -54,12 +67,12 @@ def get_size() -> float:
     """Запрашивает положительный размер фрактала."""
     while True:
         try:
-            size = float(input("Размер фрактала: "))
+            size = float(responsive_input("Размер фрактала: "))
 
-            if math.isfinite(size) and size > 0:
+            if math.isfinite(size) and 0 < size <= 300:
                 return size
 
-            print("Размер должен быть положительным числом.")
+            print("Размер должен быть больше 0 и не больше 300.")
 
         except ValueError:
             print("Ошибка: необходимо ввести число.")
@@ -69,7 +82,7 @@ def get_angle() -> float:
     """Запрашивает угол от 0 до 90 градусов."""
     while True:
         try:
-            angle = float(input("Угол от 0 до 90 градусов: "))
+            angle = float(responsive_input("Угол от 0 до 90 градусов: "))
 
             if math.isfinite(angle) and 0 <= angle <= 90:
                 return angle
@@ -82,9 +95,10 @@ def get_angle() -> float:
 
 def main() -> None:
     """Запускает меню и рисует выбранный фрактал."""
+    turtle.Screen()  # Создаём окно до первого запроса в консоли.
     while True:
         show_menu()
-        users_choice = input('Выберите пункт меню: ').strip()
+        users_choice = responsive_input('Выберите пункт меню: ').strip()
 
         if users_choice == '10':
             print('Завершение программы.')
@@ -182,7 +196,7 @@ def main() -> None:
             continue
 
         turtle.update()
-        input('Нажмите Enter для возврата в меню...')
+        responsive_input('Нажмите Enter для возврата в меню...')
 
     turtle.bye()
 
