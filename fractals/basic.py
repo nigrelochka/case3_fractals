@@ -21,6 +21,7 @@ def draw_binary_tree(depth: int, size: float, angle: float) -> None:
 
 
 def draw_branch(n: int, size: float) -> None:
+    """Рисует ветку с помощью рекурсии."""
     if n == 0:
         turtle.forward(size)
         turtle.backward(size)
@@ -28,13 +29,13 @@ def draw_branch(n: int, size: float) -> None:
 
     turtle.forward(size)
 
-    turtle.left(45)
-    draw_branch(n - 1, size / 2)
-    turtle.right(45)
+    turtle.left(60)
+    draw_branch(n - 1, size / 2.5)
+    turtle.right(60)
 
-    turtle.right(45)
-    draw_branch(n - 1, size / 2)
-    turtle.left(45)
+    turtle.right(60)
+    draw_branch(n - 1, size / 2.5)
+    turtle.left(60)
 
     draw_branch(n - 1, size)
 
