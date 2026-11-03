@@ -7,17 +7,17 @@ def draw_binary_tree(depth: int, size: float, angle: float) -> None:
        turtle.forward(size)
         return
 
-        turtle.forward(size)
+    turtle.forward(size)
 
-        turtle.right(angle)
-        draw_binary_tree(depth - 1, size / 2, angle)
+    turtle.right(angle)
+    draw_binary_tree(depth - 1, size / 2, angle)
 
-        turtle.left(angle)
-        turtle.left(angle)
-        draw_binary_tree(depth - 1, size / 2, angle)
+    turtle.left(angle)
+    turtle.left(angle)
+    draw_binary_tree(depth - 1, size / 2, angle)
 
-        turtle.right(angle)
-        turtle.backward(size)
+    turtle.right(angle)
+    turtle.backward(size)
 
 
 def draw_branch(n: int, size: float) -> None:
