@@ -4,7 +4,6 @@ import turtle
 def draw_binary_tree(depth: int, size: float, angle: float) -> None:
     """Рисует двоичное дерево с помощью рекурсии."""
     if depth == 0:
-        turtle.forward(size)
         turtle.backward(size)
         return
 
@@ -24,7 +23,6 @@ def draw_binary_tree(depth: int, size: float, angle: float) -> None:
 def draw_branch(n: int, size: float) -> None:
     """Рисует ветку с помощью рекурсии."""
     if n == 0:
-        turtle.forward(size)
         turtle.backward(size)
         return
 
