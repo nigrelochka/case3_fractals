@@ -6,6 +6,7 @@ def draw_binary_tree(depth: int, size: float, angle: float) -> None:
     if depth == 0:
         turtle.forward(size)
         turtle.backward(size)
+        return
     else:
         turtle.forward(size)
 
