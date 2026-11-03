@@ -7,7 +7,7 @@ def draw_binary_tree(depth: int, size: float, angle: float) -> None:
         turtle.forward(size)
         turtle.backward(size)
         return
-    else:
+
         turtle.forward(size)
 
         turtle.right(angle)
